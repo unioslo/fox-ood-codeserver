@@ -1,0 +1,66 @@
+---
+cluster: "fox"
+
+form:
+  - auto_accounts
+  - global_fox_alacarte
+  - working_dir
+  - bc_num_hours
+  - ec_mem
+  - ec_cpus
+  - ec_gpus
+  - ec_modulepath
+  - ec_modules
+  - version
+
+attributes:
+
+  version:
+    value: "4.18.0"
+    widget: "hidden_field"
+
+  working_dir:
+    label: "Working Directory (optional)"
+    widget: "text_field"
+
+  bc_num_hours:
+    label: "Runtime (in hours) (required)"
+    widget: "number_field"
+    required: true
+    value: "1"
+
+  auto_accounts:
+    label: "Choose the Educloud project to run under:"
+    help: |
+      <small>If you are unsure, ask the project principal</small>
+
+  ec_mem:
+    label: "Memory (GB)"
+    widget: "number_field"
+    required: true
+    value: "2"
+
+  ec_cpus:
+    label: "Number of CPUs"
+    widget: "number_field"
+    required: true
+    min: 1
+    value: "1"
+
+  ec_gpus:
+    label: "Number of GPUs:"
+    widget: "number_field"
+    value: "0"
+    required: true
+
+  ec_modulepath:
+          label: "Additional module path"
+          help: |
+                  <small>Add your own EasyBuild modulepath</small>
+
+  ec_modules:
+    label: "Additional modules (optional)"
+    value: "R-vscode/4.2.1-foss-2022a"
+    help: |
+        <small>Space separated list of additional modules to load</br/>
+        Run `module avail` for a full list. </small>

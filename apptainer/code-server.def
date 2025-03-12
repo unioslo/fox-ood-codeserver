@@ -1,0 +1,35 @@
+Bootstrap: docker
+From: rockylinux:9.2
+
+%labels
+Maintainer Torfinn Nome <torfinn.nome@usit.uio.no>
+
+%help
+This container includes code server running VS Code.
+
+%environment
+    SHELL=/bin/bash
+    PATH=$PATH:/opt/code-server/bin
+    export SHELL PATH
+
+%post
+    export VERSION=4.17.1
+    # Install necessary packages
+    dnf update -y
+    dnf install -y 'dnf-command(config-manager)'
+    dnf config-manager --set-enabled devel
+    dnf config-manager --set-enabled crb
+    dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+    dnf clean all
+    dnf install -y wget python3 lua lua-posix lua-filesystem tcl jq
+    dnf group install -y "Development Tools"
+    dnf clean all
+
+    # install code-server
+    wget https://github.com/coder/code-server/releases/download/v${VERSION}/code-server-${VERSION}-linux-amd64.tar.gz
+    tar -xvf code-server-${VERSION}-linux-amd64.tar.gz
+    cp -R code-server-${VERSION}-linux-amd64 /opt/code-server
+    rm -rf code-server-${VERSION}-linux-amd64
+
+    # Fix x11 plotting issue:
+    echo 'options(bitmapType="cairo")' > /etc/Rprofile.site

@@ -1,0 +1,14 @@
+---
+name: Code Server
+category: Interactive Apps
+subcategory: Editors
+role: batch_connect
+description: |
+  This app will launch a [VS Code] server using [Code Server] on the [Fox
+  cluster].
+
+  [VS Code]: https://code.visualstudio.com/
+  [Code Server]: https://coder.com/
+  [Fox cluster]: https://www.uio.no/english/services/it/research/hpc/fox/index.html
+tile:
+  sub_caption: VS Code Server
