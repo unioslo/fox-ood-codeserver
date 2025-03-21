@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rockylinux:9.2
+From: rockylinux:9.3
 
 %labels
 Maintainer Torfinn Nome <torfinn.nome@usit.uio.no>
@@ -13,7 +13,7 @@ This container includes code server running VS Code.
     export SHELL PATH
 
 %post
-    export VERSION=4.17.1
+    export VERSION=4.98.2
     # Install necessary packages
     dnf update -y
     dnf install -y 'dnf-command(config-manager)'
