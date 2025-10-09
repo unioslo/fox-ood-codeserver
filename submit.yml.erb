@@ -1,8 +1,7 @@
 batch_connect:
   template: "basic"
   conn_params:
-    - version
-    - code_server_version
+    - codeserver_version
     - ec_modules
   script_wrapper: |
     cat << "EOF" > container.sh
@@ -14,7 +13,7 @@ batch_connect:
     # Remove some warnings:
     export LC_ALL=C
 
-    apptainer run /cluster/opt/OOD/code-server-<%= version %>.sif /bin/bash container.sh
+    apptainer run /cluster/opt/OOD/fox-ood-codeserver-<%= codeserver_version %>.sif /bin/bash container.sh
 
 script:
   job_name: "OOD Code Server"
@@ -48,4 +47,9 @@ script:
             <%- if not ec_mem.blank? -%>
                 "--mem", "<%= ec_mem.to_i %>G"
             <%- end -%>
+
+            <%- if ec_mail_on_start -%>
+              "--mail-type=BEGIN",
+            <%- end -%>
+
           ]
