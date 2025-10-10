@@ -4,6 +4,7 @@ cluster: "fox"
 form:
   - auto_accounts
   - global_fox_alacarte
+  - codeserver_version
   - working_dir
   - bc_num_hours
   - ec_mem
@@ -11,17 +12,29 @@ form:
   - ec_gpus
   - ec_modulepath
   - ec_modules
-  - version
 
 attributes:
 
-  version:
-    value: "4.98.2"
-    widget: "hidden_field"
+  ec_mail_on_start:
+    label: "Send e-mail when session starts"
+    widget: "check_box"
+    value: false
+    help: |
+      <small>Using the e-mail your account is registered to</small>
+
+  codeserver_version:
+    label: "code-server version:"
+    widget: "select"
+    options:
+      - [ "4.104.3", "4.104.3" ]
+      - [ "4.98.2", "4.98.2" ]
 
   working_dir:
-    label: "Working Directory (optional)"
-    widget: "text_field"
+    widget: "path_selector"
+    label: "Working Directory"
+    data-target-file-type: dirs  # Valid values are: files, dirs, or both
+    readonly: false
+    help: "Select your project directory; defaults to $HOME"
 
   bc_num_hours:
     label: "Runtime (in hours) (required)"

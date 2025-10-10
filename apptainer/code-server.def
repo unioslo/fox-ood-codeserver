@@ -13,7 +13,7 @@ This container includes code server running VS Code.
     export SHELL PATH
 
 %post
-    export VERSION=4.98.2
+    export VERSION=4.104.3
     # Install necessary packages
     dnf update -y
     dnf install -y 'dnf-command(config-manager)'
